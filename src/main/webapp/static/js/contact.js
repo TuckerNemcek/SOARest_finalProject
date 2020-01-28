@@ -80,13 +80,14 @@ function editContact(id) {
     $.getJSON('/api/contact/' + id, {
         ajax: 'true'
     },function (contact) {
-        console.log("Your contact to be edited is: " + contact);
+        console.log( contact);
        $('#contactId').val(contact.id);
        $('#contactVersion').val(contact.version);
-       $('#selectedEmployee').val(contact.employee);
+       $('#selectedEmployee').val(id);
        $('#inputPhoneNumber').val(contact.phoneNumber);
        $('#inputEmail').val(contact.email);
 
+       $('#contactModal').modal('show')
 
     })
 }

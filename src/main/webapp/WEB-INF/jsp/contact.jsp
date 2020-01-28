@@ -53,7 +53,7 @@
                                 <label for="inputEmployee" class="col-lg-2 control-label">Employee</label>
                                 <div class="col-lg-10" id="inputEmployee">
                                     <select id="selectedEmployee" type="text" class="form-control" placeholder="Employee">
-                                        <option selected value="null">Select Employee</option>
+                                        <option value="null">Select Employee</option>
                                     </select>
                                 </div>
                             </div>
