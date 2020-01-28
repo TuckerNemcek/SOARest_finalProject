@@ -11,7 +11,7 @@ function buildTable() {
                 "<td>" + single.employee.firstName + " " + single.employee.lastName + "</td>" +
                 "<td>" + single.phoneNumber + "</td>" +
                 "<td>" + single.email + "</td>" +
-                "<td>" + "<button>Edit</button>" + "</td>" +
+                "<td>" + "<button onclick='editContact(" + single.id + ")'>Edit</button>" + "</td>" +
                 "<td>" + "<button>Delete</button>" + "</td>" +
                 "</tr>");
 
@@ -40,7 +40,7 @@ function insertContact() {
     $('#inputEmployee').val("");
     $('#inputEmail').val("");
     // show modal
-    $('#contactModal').show()
+    $('#contactModal').modal('toggle');
 }
 
 function saveContact() {
@@ -73,5 +73,20 @@ var contact = {
         success: function () {
             window.location.reload()
         }
+    })
+}
+
+function editContact(id) {
+    $.getJSON('/api/contact/' + id, {
+        ajax: 'true'
+    },function (contact) {
+        console.log("Your contact to be edited is: " + contact);
+       $('#contactId').val(contact.id);
+       $('#contactVersion').val(contact.version);
+       $('#selectedEmployee').val(contact.employee);
+       $('#inputPhoneNumber').val(contact.phoneNumber);
+       $('#inputEmail').val(contact.email);
+
+
     })
 }
