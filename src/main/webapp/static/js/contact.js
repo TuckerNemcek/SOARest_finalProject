@@ -79,7 +79,7 @@ function editContact(id) {
     },function (contact) {
        $('#contactId').val(contact.id);
        $('#contactVersion').val(contact.version);
-       $('#selectedEmployee').val(id);
+       $('#selectedEmployee').val(contact.employee.id);
        $('#inputPhoneNumber').val(contact.phoneNumber);
        $('#inputEmail').val(contact.email);
 
@@ -114,6 +114,7 @@ function deleteModal() {
     })
 });
     $('#confirmDeleteModal').on('show.bs.modal', function (e) {
+        console.log(e);
         var data = $(e.relatedTarget).data();
         $('.btn-ok', this).data('recordId', data.recordId);
     });
