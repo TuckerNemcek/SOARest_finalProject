@@ -20,6 +20,7 @@ function buildTable() {
     });
 }
 
+//todo figured out the button issue, check that delete function actually works!
 
 
 function insertEmployee() {

@@ -3,7 +3,6 @@ function buildTable() {
         ajax: 'true'
     }, function (data) {
         $.each(data, function (index, single) {
-            console.log(single.employee)
             $('#contact-table').find('tbody')
 
                 .append("<tr>" +
@@ -12,7 +11,7 @@ function buildTable() {
                 "<td>" + single.phoneNumber + "</td>" +
                 "<td>" + single.email + "</td>" +
                 "<td>" + "<button onclick='editContact(" + single.id + ")'>Edit</button>" + "</td>" +
-                "<td>" + "<button>Delete</button>" + "</td>" +
+                    "<td>" + "<button data-toggle='modal' data-target='#confirmDeleteModal' data-record-id='" + single.id + "'>Delete</button>" + "</td>" +
                 "</tr>");
 
         })
@@ -24,7 +23,6 @@ function populateEmployees() {
         ajax: 'true'
     }, function (data) {
     $.each(data, function (index, employee) {
-        console.log(employee)
         $('#inputEmployee').find('select')
             .append(
                 "<option value=" + employee.id + ">" + employee.firstName + " " + employee.lastName + "</option>"
@@ -57,7 +55,6 @@ var contact = {
     phoneNumber: phoneNumber,
     email: email
 }
-    console.log(contact)
 
     $.ajax( {
         headers: {
@@ -80,7 +77,6 @@ function editContact(id) {
     $.getJSON('/api/contact/' + id, {
         ajax: 'true'
     },function (contact) {
-        console.log( contact);
        $('#contactId').val(contact.id);
        $('#contactVersion').val(contact.version);
        $('#selectedEmployee').val(id);
@@ -90,4 +86,35 @@ function editContact(id) {
        $('#contactModal').modal('show')
 
     })
+}
+
+document.querySelectorAll("btn-ok").forEach((element) =>{
+    element.addEventListener("click", () =>{
+        console.log("Clicked!!!!!");
+    })
+});
+
+function deleteModal() {
+    $('#confirmDeleteModal').on('click', '.btn-ok', function (e) {
+    var $modalDiv = $(e.delegateTarget);
+
+    var id =($(this).data('recordId'));
+
+    $.ajax({
+        type: "delete",
+        url: "/api/contact/" + id,
+        async:true,
+        dataType: "json",
+        success: function () {
+            window.location.reload();
+        },
+        error: function () {
+            alert("Error Deleting Contact")
+        }
+    })
+});
+    $('#confirmDeleteModal').on('show.bs.modal', function (e) {
+        var data = $(e.relatedTarget).data();
+        $('.btn-ok', this).data('recordId', data.recordId);
+    });
 }

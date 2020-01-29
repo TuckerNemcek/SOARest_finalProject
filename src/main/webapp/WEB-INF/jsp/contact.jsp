@@ -8,6 +8,7 @@
     $(document).ready(function () {
         buildTable();
         populateEmployees();
+        deleteModal();
     })
 </script>
 
@@ -53,7 +54,7 @@
                                 <label for="inputEmployee" class="col-lg-2 control-label">Employee</label>
                                 <div class="col-lg-10" id="inputEmployee">
                                     <select id="selectedEmployee" type="text" class="form-control" placeholder="Employee">
-                                        <option value="null">Select Employee</option>
+                                        <option selected value="null">Select Employee</option>
                                     </select>
                                 </div>
                             </div>
@@ -79,6 +80,24 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" onclick="saveContact()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmDeleteModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this Contact? This cannot be undone!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger btn-ok" data-dismiss="modal" id="confirmDelete">Delete</button>
                 </div>
             </div>
         </div>

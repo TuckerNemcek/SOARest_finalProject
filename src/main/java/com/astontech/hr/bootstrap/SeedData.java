@@ -1,13 +1,7 @@
 package com.astontech.hr.bootstrap;
 
-import com.astontech.hr.domain.Contact;
-import com.astontech.hr.domain.Element;
-import com.astontech.hr.domain.ElementType;
-import com.astontech.hr.domain.Employee;
-import com.astontech.hr.services.ContactService;
-import com.astontech.hr.services.ElementService;
-import com.astontech.hr.services.ElementTypeService;
-import com.astontech.hr.services.EmployeeService;
+import com.astontech.hr.domain.*;
+import com.astontech.hr.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -31,11 +25,15 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     ContactService contactService;
 
+    @Autowired
+    AddressService addressService;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event){
         generateElementAndElementTypes();
         generateEmployee();
         generateContacts();
+        generateAddresses();
     }
 
     private void generateElementAndElementTypes()    {
@@ -124,5 +122,37 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
 
 
     }
+
+    private void generateAddresses(){
+        Address tuckAddress = new Address();
+        tuckAddress.setEmployee(employeeService.getEmployeeById(1));
+        tuckAddress.setCity("Welch");
+        tuckAddress.setStreet("7789158th Ave");
+        tuckAddress.setZip("55089");
+        addressService.saveAddress(tuckAddress);
+
+        Address tonyAddress = new Address();
+        tonyAddress.setEmployee(employeeService.getEmployeeById(2));
+        tonyAddress.setCity("Miami");
+        tonyAddress.setStreet("2234 Scott St");
+        tonyAddress.setZip("55789");
+        addressService.saveAddress(tonyAddress);
+
+        Address godFatherAddress = new Address();
+        godFatherAddress.setEmployee(employeeService.getEmployeeById(3));
+        godFatherAddress.setCity("New York");
+        godFatherAddress.setStreet("58798 Mobster Lane");
+        godFatherAddress.setZip("89367");
+        addressService.saveAddress(godFatherAddress);
+
+        Address putinAddress = new Address();
+        putinAddress.setEmployee(employeeService.getEmployeeById(4));
+        putinAddress.setCity("New York");
+        putinAddress.setStreet("58798 Mobster Lane");
+        putinAddress.setZip("89367");
+        addressService.saveAddress(putinAddress);
+
+    }
+
 }
 
