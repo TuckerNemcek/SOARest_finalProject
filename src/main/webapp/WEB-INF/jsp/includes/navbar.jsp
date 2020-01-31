@@ -18,6 +18,7 @@
                 <li><a href="/project">Project</a> </li>
                 <li><a href="/contact">Contact</a> </li>
                 <li><a href="/admin">Admin</a> </li>
+                <li><a href="/address">Addresses</a> </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 <%--                LOGIN LINK--%>

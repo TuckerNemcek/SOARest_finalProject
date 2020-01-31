@@ -39,6 +39,7 @@ public class ContactRest {
         contact.setPerson(employee);
         return contactService.saveContact(contact);}
 
+        //DELETE
     @RequestMapping(value ="/{id}", method = RequestMethod.DELETE)
     public Boolean delete(@PathVariable int id) {
         boolean result = false;
@@ -50,11 +51,4 @@ public class ContactRest {
         }
         return result;
     }
-
-    //region helper methods
-    public void linkEmployee(@RequestBody Contact contact) {
-        System.out.println("this is your linked employee: " + contact.getEmployee());
-    }
-    //endregion
-
 }

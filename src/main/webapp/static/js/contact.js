@@ -90,7 +90,6 @@ function editContact(id) {
 
 document.querySelectorAll("btn-ok").forEach((element) =>{
     element.addEventListener("click", () =>{
-        console.log("Clicked!!!!!");
     })
 });
 
